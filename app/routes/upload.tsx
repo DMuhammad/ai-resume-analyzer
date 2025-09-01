@@ -1,6 +1,17 @@
 import { useState, type FormEvent } from "react";
 import Navbar from "../components/Navbar";
 import FileUploader from "~/components/FileUploader";
+import type { Route } from "./+types/upload";
+
+export const meta = ({}: Route.MetaArgs) => {
+  return [
+    { title: "Resumind | Upload" },
+    {
+      name: "description",
+      content: "Upload your resume and let the AI analyze your resume",
+    },
+  ];
+};
 
 const upload = () => {
   const [isProcessing, setIsProcessing] = useState(false);
