@@ -80,7 +80,7 @@ const upload = () => {
       feedback: "",
     };
 
-    await kv.set(`resume: ${uuid}`, JSON.stringify(data));
+    await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
     setStatusText("Analyzing...");
     const feedback = await ai.feedback(
@@ -95,10 +95,11 @@ const upload = () => {
         : feedback.message.content[0].text;
 
     data.feedback = JSON.parse(feedbackText);
-    await kv.set(`Resume: ${uuid}`, JSON.stringify(data));
+    await kv.set(`resume:${uuid}`, JSON.stringify(data));
     setStatusText("Analysis complete, redirecting...");
 
     console.log(data);
+    navigate(`/resume/${uuid}`);
   };
 
   return (
